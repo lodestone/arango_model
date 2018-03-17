@@ -24,9 +24,12 @@ describe ArangoModel do
   end
 
   it "should support an array attribute" do
-    (ninja=Ninja.new).weapons = %w[ katana shuriken ]
-    (ninja.weapons || [] of String).first.should eq("katana")
-    (ninja.weapons || [] of String).last.should eq("shuriken")
+    nothing = [] of String
+    ninja = Ninja.new
+    ninja.weapons = %w[ katana shuriken ]
+    # Have to do this or it gives me a Nil error!
+    (ninja.weapons || nothing).first.should eq("katana")
+    (ninja.weapons || nothing).last.should eq("shuriken")
   end
 
   it "should support a json attribute" do
