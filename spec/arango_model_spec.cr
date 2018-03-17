@@ -9,7 +9,7 @@ class Ninja < ArangoModel::Base
 end
 
 describe ArangoModel do
-  it "should be an instance of ActiveModel" do
+  it "should be generally okay" do
     Ninja.new.should_not be_nil
   end
 
