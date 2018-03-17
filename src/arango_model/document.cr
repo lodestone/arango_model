@@ -3,9 +3,9 @@ require "./error"
 require "./settings"
 require "./collection"
 require "./attributes"
+require "./persistence"
 # require "./callbacks"
 # require "./querying"
-# require "./persistence"
 # require "./validators"
 # require "./version"
 # require "./associations"
@@ -18,7 +18,7 @@ class ArangoModel::Document
   include Attributes
   include Settings
   include Collection
-  # include Persistence
+  include Persistence
   # include Validators
 
   # extend Querying
