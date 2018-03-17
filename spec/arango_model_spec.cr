@@ -34,14 +34,4 @@ describe ArangoModel do
     ninja.enemies = JSON::Any.new([{"name" => "Hiro"}, {"name" => "Shane"}].to_json)
     ninja.enemies.should eq("[{\"name\":\"Hiro\"},{\"name\":\"Shane\"}]")
   end
-
-  # it "should have an array attribute" do
-  #   ninja = Ninja.new
-  #   ninja.enemies = {larry: "Larry from accounting", neighbor: "The snooty neighbor"}
-  #   p ninja.enemies
-  #   if !ninja.enemies.nil?
-  #     ninja.enemies[0].should eq("Larry from accounting")
-  #     ninja.enemies[1].should eq("The snooty neighbor")
-  #   end
-  # end
 end
