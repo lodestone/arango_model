@@ -1,0 +1,17 @@
+name: arango_model
+version: 0.1.0
+
+authors:
+  - Matt Petty <matt@kizmeta.com>
+
+crystal: 0.24.2
+
+license: MIT
+
+dependencies:
+  active-model:
+    github: spider-gazelle/active-model
+    branch: master
+  arangocr:
+    github: solisoft/arangocr
+    branch: master
