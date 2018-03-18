@@ -81,7 +81,8 @@ module ArangoModel::Attributes
     end
 
     def to_h
-      attributes = {} of String => DatabaseTypes::Any
+      # attributes = {} of String => String | Nil | Int32 | Array(String) | Hash(String, String)
+      attributes = {} of String => ArangoModel::DatabaseTypes::Any
 
       attributes["{{PRIMARY[:name]}}"] = {{PRIMARY[:name]}}
 
@@ -104,22 +105,22 @@ module ArangoModel::Attributes
 
     def to_json(json : JSON::Builder)
       json.object do
-        json.attribute "{{PRIMARY[:name]}}", {{PRIMARY[:name]}}
+        json.field "{{PRIMARY[:name]}}", {{PRIMARY[:name]}}
 
         {% for name, type in ATTRIBUTES %}
           %attribute, %value = "{{name.id}}", {{name.id}}
           {% if type.id == Time.id %}
-            json.attribute %attribute, %value.try(&.to_s(%F %X))
+            json.field %attribute, %value.try(&.to_s(%F %X))
           {% elsif type.id == Slice.id %}
-            json.attribute %attribute, %value.id.try(&.to_s(""))
+            json.field %attribute, %value.id.try(&.to_s(""))
           {% else %}
-            json.attribute %attribute, %value
+            json.field %attribute, %value
           {% end %}
         {% end %}
 
         {% if SETTINGS[:timestamps] %}
-          json.attribute "created_at", created_at.try(&.to_s("%F %X"))
-          json.attribute "updated_at", updated_at.try(&.to_s("%F %X"))
+          json.field "created_at", created_at.try(&.to_s("%F %X"))
+          json.field "updated_at", updated_at.try(&.to_s("%F %X"))
         {% end %}
       end
     end

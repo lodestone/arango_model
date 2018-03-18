@@ -6,31 +6,30 @@ require "./arango_model/*"
 module ArangoModel
 end
 
-class Fighter < ArangoModel::Document
-  attribute _id : String
-  attribute name : String
-  attribute age : Int32
-  attribute weapons : String | Array(String)
-  attribute deleted_at : Time
-  attribute dead : Bool
-  timestamps
-end
-
-p Fighter.new
+# class Fighter < ArangoModel::Document
+#   attribute _id : String
+#   attribute name : String
+#   attribute age : Int32
+#   attribute weapons : String | Array(String)
+#   attribute deleted_at : Time
+#   attribute dead : Bool
+#   timestamps
+# end
+#
+# p Fighter.new
 # exit 0
-
 class Ninja < ArangoModel::Document
   attribute _id : String
   attribute name : String
   attribute age : Int32
   attribute weapons : String | Array(String)
-  attribute enemies : String | JSON::Any | Hash(String, String)
+  attribute enemies : String | JSON::Any
 end
 
-json = JSON.parse({"name" => "Kano"}.to_json)
+# json = JSON.parse({"name" => "Kano"}.to_json)
 # p Ninja.new("Nakamura", 25, nil, json)
 # p Ninja.new({"name" => "Willson", "enemies" => json})
-p Ninja.new(name: "Milena", enemies: json)
+# p Ninja.new(name: "Milena", enemies: json)
 
 # ------------------------------------------
 # Story:
@@ -42,13 +41,18 @@ p Ninja.new(name: "Milena", enemies: json)
 # p nakamura
 
 # puts Ninja.new.methods.sort
-chuck = Ninja.create({name: "Chuck", age: 55, weapons: %w[ feet ], enemies: nil})
-p chuck
-Ninja.create({name: "Raiden"})
-Ninja.create({name: "Joseph", age: 12, weapons: %w[ fists ], enemies: { "x" => "y" }})
+# chuck_params = Hash({name: "Chuck", age: 55, weapons: %w[ feet ], enemies: nil})
+chuck_params = {"name" => "Chuck", "age" => 55}
+chuck = Ninja.new(chuck_params)
+chuck.save
+# p chuck
+# raiden = Ninja.new({"name" => "Raiden"})
+# raiden.save
+# Ninja.create({name: "Joseph", age: 12, weapons: %w[ fists ], enemies: { "x" => "y" }})
 # Ninja.create({name: "Jonny", enemies: {"one" => "two"}})
 
 # ------------------------------------------
+exit 0
 
 client = Arango::Client.new("http://127.0.0.1:8529", "root", "")
 database = client.database("arango_model_test")

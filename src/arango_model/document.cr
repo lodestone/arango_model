@@ -34,7 +34,7 @@ class ArangoModel::Document
       __process_collection
       __process_attributes
       # __process_querying
-      # __process_persistence
+      __process_persistence
 
       def inspect(io)
         sts = [] of String
@@ -52,7 +52,8 @@ class ArangoModel::Document
     set_attributes(args.to_h)
   end
 
-  def initialize(args : Hash(Symbol | String, String | JSON::Type))
+  # def initialize(args : Hash(Symbol | String, String | Int32 | JSON::Type | Array(String) | Nil ))
+  def initialize(args : Hash(Symbol | String, ArangoModel::DatabaseTypes::Any | Nil ))
     set_attributes(args)
   end
 

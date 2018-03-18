@@ -32,7 +32,7 @@ module ArangoModel::Collection
     # Collection Name
     @@collection_name = "{{collection_name}}"
     @@primary_name = "{{primary_name}}"
-    @@collection : Arango::Collection | Nil #.db[@@collection_name]
+    @@collection : Arango::Collection = db.collection("{{collection_name}}") #Arango::Collection | Nil #.db[@@collection_name]
 
     # make accessible to outside classes
     def self.collection_name
@@ -46,11 +46,11 @@ module ArangoModel::Collection
     end
 
     def self.adapter
-      Mongo::ORM::Collection.adapter
+      ArangoModel::Adapter
     end
 
     def self.db
-      @db
+      db
     end
 
     def _id=(value : String)

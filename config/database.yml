@@ -1,1 +1,4 @@
-collection_name: test_docs
+development:
+  database:
+    url: http://127.0.0.1:8529
+    name: arango_model_development

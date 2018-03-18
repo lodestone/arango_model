@@ -1,6 +1,10 @@
-# arangomodel
+# ArangoModel
 
-TODO: Write a description here
+_An ODM for ArangoDB in Crystal_
+
+## WARNING: MAJOR WIP
+
+
 
 ## Installation
 
@@ -8,25 +12,21 @@ Add this to your application's `shard.yml`:
 
 ```yaml
 dependencies:
-  arangomodel:
-    github: lodestone/arangomodel
+  arango_model:
+    github: lodestone/arango_model
 ```
 
 ## Usage
 
 ```crystal
-require "arangomodel"
+require "arango_model"
 ```
 
-TODO: Write usage instructions here
-
-## Development
-
-TODO: Write development instructions here
+**TBD**
 
 ## Contributing
 
-1. Fork it ( https://github.com/lodestone/arangomodel/fork )
+1. Fork it ( https://github.com/lodestone/arango_model/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
